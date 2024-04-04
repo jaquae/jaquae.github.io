@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<title>简单搜索</title>
+<link rel="shortcut icon" href="https://www.bing.com/sa/simg/favicon-trans-bg-blue-mg.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* 竖直方向排列 */
+        height: 100vh;
+        background-image: url("https://api.dujin.org/bing/1920.php"); /* 这里替换图片链接可更换背景图片 */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    form {
+        text-align: center;
+        max-width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px; /* 增加下边距，与下面的IP获取分开 */
+    }
+    input[type="text"] {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 18px;
+    }
+    input[type="submit"] {
+        background-color: #007eff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-left: 5px;
+    }
+    input[type="submit"]:hover {
+        background-color: #006ace;
+    }
+    #ip {
+        font-size: 18px;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<form action="https://www.bing.com/search" method="get" target="_blank">
+    <input type="text" name="q" placeholder="输入关键字进行搜索">
+    <input type="submit" value="搜索">
+</form>
+<!-- IP获取 -->
+<p id="ip"></p>
+<script>
+    fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
+        .then(data => document.getElementById("ip").innerText = "您的 IP 地址为：" + data.ip)
+        .catch(error => console.log(error))
+</script>
+</body>
+</html>
